@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Adicionando importação do Link e useNavigate
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import Logo from '../assets/SGCPE.png';
+import Swal from 'sweetalert2';
 
 const pages = [
   { campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' },
@@ -25,9 +26,9 @@ const pages = [
 const settings = ['Perfil', 'Sair'];
 
 function MenuApp() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate(); // Adicionando o hook useNavigate
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate(); 
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,12 +42,30 @@ function MenuApp() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = (option) => { // Modificando a função handleCloseUserMenu para receber a opção
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Tem certeza que deseja sair?",
+      text: "Você será desconectado do sistema.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, sair",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirecionar para a página de login
+        navigate('/');
+      }
+    });
+  };
+
+  const handleCloseUserMenu = (option) => {
     setAnchorElUser(null);
     if (option === 'Perfil') {
       navigate('/perfil-usuario');
     } else if (option === 'Sair') {
-      navigate('/');
+      // Chamar a função de logout
+      handleLogout();
     }
   };
 
@@ -54,10 +73,12 @@ function MenuApp() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* Botão de "Home" */}
           <IconButton href='/escolha-funcionalidade'>
             <HomeIcon sx={{ mr: 1 }} />
           </IconButton>
 
+          {/* Título do Aplicativo */}
           <Typography
             variant="h6"
             noWrap
@@ -76,6 +97,7 @@ function MenuApp() {
             SGCPE
           </Typography>
 
+          {/* Ícone de Menu (para telas pequenas) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -87,6 +109,7 @@ function MenuApp() {
             >
               <MenuIcon />
             </IconButton>
+            {/* Menu de Navegação para telas pequenas */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -115,6 +138,7 @@ function MenuApp() {
             </Menu>
           </Box>
 
+          {/* Título do Aplicativo (para telas pequenas) */}
           <Typography
             variant="h5"
             noWrap
@@ -134,6 +158,7 @@ function MenuApp() {
             SGCPE
           </Typography>
 
+          {/* Botões de Navegação (para telas grandes) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -148,12 +173,14 @@ function MenuApp() {
             ))}
           </Box>
 
+          {/* Avatar do Usuário e Menu de Configurações */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title=" Menu">
+            <Tooltip title="Menu">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Logo da empresa" src={Logo} />
               </IconButton>
             </Tooltip>
+            {/* Menu de Configurações do Usuário */}
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -171,7 +198,7 @@ function MenuApp() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}> {/* Passando a opção para a função */}
+                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
