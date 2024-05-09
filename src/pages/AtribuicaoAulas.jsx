@@ -13,20 +13,20 @@ import MenuApp from "../components/MenuApp";
 import ReactDataTables from "../components/Tabela";
 
 const columns = [
-  { data: "nomeProfessor", title: "Professor" },
   { data: "nomeProfessorEventual", title: "Professor Eventual" },
-  { data: "UA", title: "Unidade Administrativa" },
-  { data: "CIE", title: "CIE" },
-  { data: "ciclo", title: "Ciclo" },
+  { data: "RGProfessorEventual", title: "RG Professor Eventual" },
   { data: "Data", title: "Data" },
+  { data: "UA", title: "UA" },
+  { data: "CIE", title: "CIE" },
   { data: "HoraInicioAula", title: "Hora Inicio" },
   { data: "HoraFimAula", title: "Hora Fim" },
+  { data: "nomeProfessor", title: "Professor" },
+  { data: "RGProfessor", title: "RG Professor" },
+  { data: "ciclo", title: "Ciclo" },
   { data: "turno", title: "Turno" },
   { data: "turma", title: "Turma" },
-  // { data: "escola", title: "Escola" },
-  {data: null, title: "Editar"},
-  {data: null, title: "Excluir"},
-
+  { data: null, title: "Editar" },
+  { data: null, title: "Excluir" },
 ];
 
 const layout = {
@@ -35,15 +35,15 @@ const layout = {
       "pageLength",
       {
         extend: "copy",
-        text: "Copy to clipboard",
+        text: "Copiar Tabela",
       },
-      {
-        extend: 'excel',
-        text: "excel colluns",
-        exportOptions: {
-            columns: [0, 1, 2, 5]
-        }
-    },
+      // {
+      //   extend: "excel",
+      //   text: "Excel colunas restringidas",
+      //   exportOptions: {
+      //     columns: [0, 1, 2, 5],
+      //   },
+      // },
       "csv",
       "excel",
       "pdf",
@@ -52,19 +52,22 @@ const layout = {
   },
 };
 
+const css = 'style="width: 90px;height: 25px; background: blue; border: none; border-radius: 3px; color: white; cursor: pointer;"';
+
 const columnDefs = [
   {
-      data: "null",
-      defaultContent: '<button id="editar">Editar</button>',
-      targets: -2
+    data: "null",
+    defaultContent:
+      '<button '+css+' id="editar">Editar</button>',
+    targets: -2,
   },
   {
     data: "null",
-    defaultContent: '<button id="excluir">Excluir</button>',
-    targets: -1
-  }
-]
-
+    defaultContent:
+      '<button '+css+' id="excluir">Excluir</button>',
+    targets: -1,
+  },
+];
 
 const EmployeeTable = () => {
   pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -72,14 +75,21 @@ const EmployeeTable = () => {
   return (
     <>
       <MenuApp />
-
-      <ReactDataTables
-        columns={columns}
-        destroy={true}
-        layout={layout}
-        ajax={"https://nestjs-sgcpe-api.vercel.app/atribuicao_aulas/view"}
-        columnDefs ={columnDefs}
-      />
+      <div
+        style={{
+          width: "90%",
+          margin: "30px auto",
+          backgroundColor: "#FFFFFf",
+        }}
+      >
+        <ReactDataTables
+          columns={columns}
+          destroy={true}
+          layout={layout}
+          ajax={"https://nestjs-sgcpe-api.vercel.app/atribuicao_aulas/view"}
+          columnDefs={columnDefs}
+        />
+      </div>
     </>
   );
 };

@@ -222,7 +222,7 @@ const DadosCadastroProfessores = () => {
                     padding: "8px",
                   }}
                 >
-                  <IconButton aria-label="delete" onClick={() => handleEditar(item)}>
+                  <IconButton aria-label="edit" onClick={() => handleEditar(item)}>
                     <EditIcon />
                   </IconButton>
                   <IconButton aria-label="delete" onClick={() => handleExcluir(item.ID_cp)}>

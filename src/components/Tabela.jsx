@@ -86,7 +86,6 @@ export function ReactDataTables({ ...props }) {
   
       if(data != null ){
         handleExcluir(data?.idAtribuicaoAulas)
-        //alert('You clicked on excluir ' + data?.nomeProfessor + "'s row");
       } 
     });
     

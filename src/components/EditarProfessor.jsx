@@ -274,7 +274,7 @@ export default function EditarProfessor({ dados, setDados, open, setOpen }) {
                   variant="contained"
                   type="submit"
                 >
-                  Enviar
+                  Salvar
                 </Button>
               </div>
             </form>
