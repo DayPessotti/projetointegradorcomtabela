@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Avatar } from '@mui/material';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
 import Background from '../assets/Fundo.png';

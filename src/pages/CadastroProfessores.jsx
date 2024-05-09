@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Avatar, Grid } from '@mui/material';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import CardCargoProfessores from "../components/CardCargoProfessores";
 import CardCategoriaProfessores from "../components/CardCategoriaProfessores";
 import Background from '../assets/Fundo.png';

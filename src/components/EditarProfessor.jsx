@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Background from "../assets/Fundo.png";
 import Select from "@mui/material/Select";
 import { Avatar } from "@mui/material";
-import Logo from "../assets/SGCPE.png";
+import Logo from "../assets/SGAE.png";
 import FormControl from '@mui/material/FormControl';
 
 const Fundo = `url(${Background})`;

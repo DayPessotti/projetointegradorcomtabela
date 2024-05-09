@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Avatar, Grid } from "@mui/material";
 import Button from "@mui/material/Button";
-import Logo from "../assets/SGCPE.png";
+import Logo from "../assets/SGAE.png";
 import Background from "../assets/Fundo.png";
 import MenuApp from "../components/MenuApp";
 import InputLabel from "@mui/material/InputLabel";

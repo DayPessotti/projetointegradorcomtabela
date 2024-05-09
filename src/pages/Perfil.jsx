@@ -6,7 +6,7 @@ import Background from '../assets/Fundo.png';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Foto from '../assets/professoraavatar.png';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
 import CardDisciplinas from "../components/CardDisciplina";

@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import Swal from 'sweetalert2';
 
 const pages = [
@@ -94,7 +94,7 @@ function MenuApp() {
               textDecoration: 'none',
             }}
           >
-            SGCPE
+            SGAE
           </Typography>
 
           {/* Ícone de Menu (para telas pequenas) */}
@@ -155,7 +155,7 @@ function MenuApp() {
               textDecoration: 'none',
             }}
           >
-            SGCPE
+            SGAE
           </Typography>
 
           {/* Botões de Navegação (para telas grandes) */}

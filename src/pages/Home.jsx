@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import { Link as RouterLink } from 'react-router-dom';
 
 const defaultTheme = createTheme();
@@ -110,7 +110,7 @@ export default function Home() {
             padding: '20px',
           }}
         >
-          <img src={Logo} alt="SGCPE" style={{ maxWidth: '80%', height: 'auto' }} />
+          <img src={Logo} alt="SGAE" style={{ maxWidth: '80%', height: 'auto' }} />
         </Grid>
         <Grid
           item
