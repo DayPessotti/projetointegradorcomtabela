@@ -14,12 +14,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Background from "../assets/Fundo.png";
 import Select from "@mui/material/Select";
 import { Avatar } from "@mui/material";
-import Logo from "../assets/SGCPE.png";
+import Logo from "../assets/SGAE.png";
 import FormControl from "@mui/material/FormControl";
 import dayjs from "dayjs";
 import SelectProfessor from "./SelectProfessor";
 import InputData from "./InputData";
-import InputHoras from "./InputHoras";
 
 const Fundo = `url(${Background})`;
 const url = "https://nestjs-sgcpe-api.vercel.app/atribuicao_aulas/";
@@ -28,47 +27,38 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }) {
-  const [formEnviado, setFormEnviado] = useState(false);
-
-  const [ciclo, setCiclo] = useState("");
-  const [turno, setTurno] = useState("");
-  const [turma, setTurma] = useState("");
-  const [horaInicio, setHoraInicio] = useState(dayjs().startOf("day"));
+export default function EditarAtribuicaoAulas({
+  dados,
+  setDados,
+  open,
+  setOpen,
+}) {
   const [data, setData] = useState(dayjs().startOf("day"));
-  const [horaTermino, setHoraTermino] = useState(dayjs().startOf("day"));
   const [professor, setProfessor] = useState("");
   const [professorEventual, setProfessorEventual] = useState("");
-  const [nomeEscola, setNomeEscola] = useState("");
   const [ua, setUa] = useState("");
   const [cie, setCie] = useState("");
+  const [quantidadeAulas, setQuantidadeAulas] = useState(0);
+  const [nt, setNt] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         const data = await response.json();
-
+        
         const dadosFiltrados = data.atribuicaoAulas.find(
           (item) => item.idAtribuicaoAulas == dados.idAtribuicaoAulas
         );
 
         if (dadosFiltrados != null && dadosFiltrados != undefined) {
-          setCiclo(dadosFiltrados.ciclo);
-          setTurno(dadosFiltrados.turno);
-          setTurma(dadosFiltrados.turma);
-          setHoraInicio(
-            dayjs(dadosFiltrados.Data + " " + dadosFiltrados.HoraInicioAula)
-          );
           setData(dayjs(dadosFiltrados.Data));
-          setHoraTermino(
-            dayjs(dadosFiltrados.Data + " " + dadosFiltrados.HoraFimAula)
-          );
           setProfessor(dadosFiltrados.idProfessor);
           setProfessorEventual(dadosFiltrados.idProfessorEventual);
-          setNomeEscola(dadosFiltrados.nomeEscola);
           setUa(dadosFiltrados.UA);
           setCie(dadosFiltrados.CIE);
+          setQuantidadeAulas(dadosFiltrados.quantidadeAulas);
+          setNt(dadosFiltrados.nt);
         }
       } catch (error) {
         console.error("Erro ao buscar dados da API:", error);
@@ -95,25 +85,22 @@ export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        CIE: cie,
-        Data: data,
-        HoraFimAula: horaTermino,
-        HoraInicioAula: horaInicio,
-        UA: ua,
-        ciclo: ciclo,
         idAtribuicaoAulas: dados.idAtribuicaoAulas,
         idProfessor: professor,
         idProfessorEventual: professorEventual,
-        nomeEscola: nomeEscola,
-        turma: turma,
-        turno: turno,
+        quantidadeAulas: parseInt(quantidadeAulas),
+        nt: parseInt(nt),
+        Data: data,
+        UA: ua,
+        CIE: cie,
+        
       }),
     };
 
     fetch(url + dados.idAtribuicaoAulas, opcoes)
       .then((resposta) => {
         if (resposta.ok) {
-          console.log("Requisição bem-sucedida!");
+          window.location = "/atribuicao-aulas";
           return resposta.json();
         } else {
           console.error("Erro ao fazer a requisição:", resposta.status);
@@ -130,7 +117,6 @@ export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }
         console.error("Erro durante a requisição:", error);
       });
   };
-
 
   return (
     <React.Fragment>
@@ -151,7 +137,7 @@ export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            Editar Atribuicão de Aulas
+              Editar Atribuicão de Aulas
             </Typography>
           </Toolbar>
         </AppBar>
@@ -209,16 +195,6 @@ export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }
 
               <TextField
                 sx={{ marginBottom: "8px", width: "100%" }}
-                label="Escola"
-                variant="filled"
-                value={nomeEscola}
-                onChange={(event) => {
-                  setNomeEscola(event.target.value);
-                }}
-                fullWidth
-              />
-              <TextField
-                sx={{ marginBottom: "8px", width: "100%" }}
                 label="Unidade Administrativa"
                 variant="filled"
                 value={ua}
@@ -227,16 +203,49 @@ export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }
                 }}
                 fullWidth
               />
-              <TextField
-                sx={{ marginBottom: "8px", width: "100%" }}
-                label="CIE"
-                variant="filled"
-                value={cie}
-                onChange={(event) => {
-                  setCie(event.target.value);
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  margin: "5px auto",
                 }}
-                fullWidth
-              />
+              >
+                <TextField
+                  sx={{ marginBottom: "8px", width: "33%" }}
+                  label="QTD-Aulas"
+                  variant="filled"
+                  value={quantidadeAulas}
+                  onChange={(event) => {
+                    setQuantidadeAulas(event.target.value);
+                  }}
+                  // fullWidth
+                />
+
+                <TextField
+                  sx={{ marginBottom: "8px", width: "33%" }}
+                  label="CIE"
+                  variant="filled"
+                  value={cie}
+                  onChange={(event) => {
+                    setCie(event.target.value);
+                  }}
+                  // fullWidth
+                />
+
+                <TextField
+                  sx={{ marginBottom: "8px", width: "33%" }}
+                  label="NT"
+                  variant="filled"
+                  value={nt}
+                  onChange={(event) => {
+                    setNt(event.target.value);
+                  }}
+                  // fullWidth
+                />
+              </div>
 
               <div
                 style={{
@@ -247,126 +256,7 @@ export default function EditarAtribuicaoAulas({ dados, setDados, open, setOpen }
                   marginBottom: "5px",
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "33%",
-                    marginTop: "5px",
-                  }}
-                >
-                  <InputData value={data} setValue={setData} />
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "33%",
-                    marginTop: "5px",
-                  }}
-                >
-                  <InputHoras
-                    label={"Hora de Início"}
-                    value={horaInicio}
-                    setValue={setHoraInicio}
-                  />
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "33%",
-                    marginTop: "5px",
-                  }}
-                >
-                  <InputHoras
-                    label={"Hora de Término"}
-                    value={horaTermino}
-                    setValue={setHoraTermino}
-                  />
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                  width: "100%",
-                  marginTop: "5px",
-                }}
-              >
-                <FormControl fullWidth>
-                  <InputLabel
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    Ciclo
-                  </InputLabel>
-                  <Select
-                    style={{ marginBottom: "8px", width: "99%" }}
-                    value={ciclo}
-                    label="Ciclo"
-                    onChange={(event) => {
-                      setCiclo(event.target.value);
-                    }}
-                  >
-                    <MenuItem value={"6° ao 9°"}>6° ao 9°</MenuItem>
-                    <MenuItem value={"1° ao 3°"}>1° ao 3°</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl fullWidth>
-                  <InputLabel>Turno</InputLabel>
-                  <Select
-                    style={{ marginBottom: "8px", width: "99%" }}
-                    value={turno}
-                    label="Turno"
-                    onChange={(event) => {
-                      setTurno(event.target.value);
-                    }}
-                  >
-                    <MenuItem value={"Manhã"}>Manhã</MenuItem>
-                    <MenuItem value={"Tarde"}>Tarde</MenuItem>
-                    <MenuItem value={"Noite"}>Noite</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl fullWidth>
-                  <InputLabel>Turma</InputLabel>
-                  <Select
-                    style={{ marginBottom: "8px", width: "99%" }}
-                    value={turma}
-                    label="Turma"
-                    onChange={(event) => {
-                      setTurma(event.target.value);
-                    }}
-                  >
-                    <MenuItem value={"1A"}>1A</MenuItem>
-                    <MenuItem value={"1B"}>1B</MenuItem>
-                    <MenuItem value={"1C"}>1C</MenuItem>
-                    <MenuItem value={"1D"}>1D</MenuItem>
-                    <MenuItem value={"2A"}>2A</MenuItem>
-                    <MenuItem value={"2B"}>2B</MenuItem>
-                    <MenuItem value={"2C"}>2C</MenuItem>
-                    <MenuItem value={"2D"}>2D</MenuItem>
-                    <MenuItem value={"2A1"}>2A1</MenuItem>
-                    <MenuItem value={"3C"}>3C</MenuItem>
-                    <MenuItem value={"3D"}>3D</MenuItem>
-                    <MenuItem value={"4A1"}>4A1</MenuItem>
-                    <MenuItem value={"6A"}>6A</MenuItem>
-                    <MenuItem value={"6B"}>6B</MenuItem>
-                    <MenuItem value={"6C"}>6C</MenuItem>
-                    <MenuItem value={"6D"}>6D</MenuItem>
-                    <MenuItem value={"7A"}>7A</MenuItem>
-                    <MenuItem value={"7B"}>7B</MenuItem>
-                  </Select>
-                </FormControl>
+                <InputData value={data} setValue={setData} />
               </div>
 
               <div

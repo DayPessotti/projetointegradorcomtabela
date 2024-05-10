@@ -16,7 +16,7 @@ export default function InputData({ value, setValue }) {
         <DemoContainer components={["DatePicker"]} sx={{ width: "100%" }}>
           <DatePicker
             sx={{ width: "100%" }}
-            label="Data"
+            label="Dia"
             format="D/MM/YYYY"
             value={value}
             onChange={(newValue) => setValue(newValue)}

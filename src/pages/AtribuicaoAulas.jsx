@@ -11,23 +11,24 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 
 import MenuApp from "../components/MenuApp";
 import ReactDataTables from "../components/Tabela";
+import dayjs from "dayjs";
 
 const columns = [
   { data: "nomeProfessorEventual", title: "Professor Eventual" },
   { data: "RGProfessorEventual", title: "RG Professor Eventual" },
-  { data: "Data", title: "Data" },
   { data: "UA", title: "UA" },
   { data: "CIE", title: "CIE" },
-  { data: "HoraInicioAula", title: "Hora Inicio" },
-  { data: "HoraFimAula", title: "Hora Fim" },
+  { data: "Data", title: "Dia" },
+  { data: "quantidadeAulas", title: "QTD Aulas" },
+  { data: "nt", title: "NT" },
   { data: "nomeProfessor", title: "Professor" },
   { data: "RGProfessor", title: "RG Professor" },
-  { data: "ciclo", title: "Ciclo" },
-  { data: "turno", title: "Turno" },
-  { data: "turma", title: "Turma" },
+  { data: "DIProfessor", title: "DI" },
+  { data: "codigoDisciplinaProfessorEventual", title: "DISC" },
   { data: null, title: "Editar" },
   { data: null, title: "Excluir" },
 ];
+
 
 const layout = {
   topStart: {
@@ -35,37 +36,59 @@ const layout = {
       "pageLength",
       {
         extend: "copy",
-        text: "Copiar Tabela",
+        exportOptions: {
+          columns: [0, 1, 2, 3,4,5,6,7,8,9,10],
+        },
       },
-      // {
-      //   extend: "excel",
-      //   text: "Excel colunas restringidas",
-      //   exportOptions: {
-      //     columns: [0, 1, 2, 5],
-      //   },
-      // },
-      "csv",
-      "excel",
-      "pdf",
-      "print",
+      {
+        extend: "excel",
+        exportOptions: {
+          columns: [0, 1, 2, 3,4,5,6,7,8,9,10],
+        },
+      },
+      {
+        extend: "csv",
+        exportOptions: {
+          columns: [0, 1, 2, 3,4,5,6,7,8,9,10],
+        }
+      },
+      {
+        extend: "pdf",
+        exportOptions: {
+          columns: [0, 1, 2, 3,4,5,6,7,8,9,10],
+        }
+      },
+      {
+        extend: "print",
+        exportOptions: {
+          columns: [0, 1, 2, 3,4,5,6,7,8,9,10],
+        }
+      }
     ],
   },
 };
 
-const css = 'style="width: 90px;height: 25px; background: blue; border: none; border-radius: 3px; color: white; cursor: pointer;"';
+const css =
+  'style="width: 90px;height: 25px; background: blue; border: none; border-radius: 3px; color: white; cursor: pointer;"';
 
 const columnDefs = [
   {
     data: "null",
-    defaultContent:
-      '<button '+css+' id="editar">Editar</button>',
+    defaultContent: "<button " + css + ' id="editar">Editar</button>',
     targets: -2,
   },
   {
     data: "null",
-    defaultContent:
-      '<button '+css+' id="excluir">Excluir</button>',
+    defaultContent: "<button " + css + ' id="excluir">Excluir</button>',
     targets: -1,
+  },
+  {
+    data: "Data",
+    targets: 4,
+    render: function (data, type, row, meta) {
+      var dataFormatada = dayjs(data).add(1, 'day');
+      return dataFormatada.format('DD/MM/YYYY');
+    },
   },
 ];
 

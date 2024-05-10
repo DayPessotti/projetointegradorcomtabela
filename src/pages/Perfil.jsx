@@ -6,7 +6,7 @@ import Background from '../assets/Fundo.png';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Foto from '../assets/professoraavatar.png';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
 import CardDisciplinas from "../components/CardDisciplina";
@@ -216,7 +216,7 @@ export default function Perfil() {
           <CardEscolas Escolas={escolas} setEscolas={setEscolas}/>
           <CardDisciplinas Disciplina={disciplina} setDisciplina={setDisciplina} />
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <Button style={{ marginTop: '16px', width: '45%', background: 'darkblue' }} variant="contained" href="/">Voltar</Button>
+            <Button style={{ marginTop: '16px', width: '45%', background: 'darkblue' }} variant="contained" href="/escolha-funcionalidade">Voltar</Button>
             <Button style={{ marginTop: '16px', width: '45%', background: 'darkblue' }} variant="contained" type="submit">Salvar</Button>
           </div>
         </form>

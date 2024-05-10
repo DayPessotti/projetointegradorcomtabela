@@ -93,7 +93,7 @@ export function ReactDataTables({ ...props }) {
       dt.destroy();
     };
    
-  }, []);
+  }, [open]);
 
 
   return (
