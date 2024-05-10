@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Logo from '../assets/SGCPE.png';
+import Logo from '../assets/SGAE.png';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -16,8 +16,8 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://www.sgcpe.com.br/">
-                SGCPE
+            <Link color="inherit" href="https://www.sgae.com.br/">
+                SGAE
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -70,7 +70,7 @@ export default function RestaurarSenha() {
                         padding: '20px',
                     }}
                 >
-                    <img src={Logo} alt="SGCPE" style={{ maxWidth: '80%', height: 'auto' }} />
+                    <img src={Logo} alt="SGAE" style={{ maxWidth: '80%', height: 'auto' }} />
                 </Grid>
                 <Grid
                     item
