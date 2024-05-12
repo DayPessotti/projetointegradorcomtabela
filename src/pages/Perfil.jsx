@@ -10,6 +10,7 @@ import Logo from '../assets/SGAE.png';
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
 import CardDisciplinas from "../components/CardDisciplina";
+import MenuApp from '../components/MenuApp';
 
 export default function Perfil() {
   const [nomeCompleto, setNomeCompleto] = useState('');
@@ -152,6 +153,7 @@ export default function Perfil() {
 
   return (
     <Grid container style={{ height: '100vh' }}>
+      <MenuApp />
       <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
       </Grid>
