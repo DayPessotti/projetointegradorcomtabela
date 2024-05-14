@@ -11,10 +11,11 @@ import Logo from "../assets/SGAE.png";
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
 import { useUserContext } from "../context/UserContext";
-import MenuApp from "../components/MenuApp";
 
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CardDisciplinas from "../components/CardDisciplina";
+import MenuApp from '../components/MenuApp';
 
 export default function Perfil() {
   const { userInfo } = useUserContext();
