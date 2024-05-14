@@ -95,6 +95,10 @@ const columnDefs = [
 const EmployeeTable = () => {
   pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
+  if(!sessionStorage.getItem('userData')){
+    return window.location = "/";
+  }
+
   return (
     <>
       <MenuApp />
@@ -102,7 +106,9 @@ const EmployeeTable = () => {
         style={{
           width: "90%",
           margin: "30px auto",
-          backgroundColor: "#FFFFFf",
+          backgroundColor: "#FFFFFF",
+          padding: "10px", // Adicionando padding para espaçamento interno
+          boxSizing: "border-box", // Garantindo que o padding não aumente a largura
         }}
       >
         <ReactDataTables
@@ -113,6 +119,23 @@ const EmployeeTable = () => {
           columnDefs={columnDefs}
         />
       </div>
+      <style>
+        {`
+        @media only screen and (max-width: 1200px) {
+          div {
+            maxWidth: 1200px;
+            overflow-y: auto;
+          }
+        }
+
+        @media only screen and (max-width: 480px) {
+          div {
+            maxWidth: 500px;
+            overflow-y: auto; 
+          }
+        }
+        `}
+      </style>
     </>
   );
 };

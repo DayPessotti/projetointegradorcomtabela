@@ -67,6 +67,10 @@ export default function CadastroAtribuicaoAulas() {
       });
   };
 
+  if(!sessionStorage.getItem('userData')){
+    return window.location = "/";
+  }
+
   return (
     <>
       <MenuApp />

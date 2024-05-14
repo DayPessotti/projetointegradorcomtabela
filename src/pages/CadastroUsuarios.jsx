@@ -1,35 +1,36 @@
-import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { Avatar } from '@mui/material';
-import Logo from '../assets/SGAE.png';
+import React, { useState } from "react";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { Avatar } from "@mui/material";
+import Logo from "../assets/SGAE.png";
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
-import Background from '../assets/Fundo.png';
+import Background from "../assets/Fundo.png";
 
 const Fundo = `url(${Background})`;
 
 const CadastroUsuarios = () => {
-  const [nomeCompleto, setNomeCompleto] = useState('');
-  const [nomeCompletoError, setNomeCompletoError] = useState('');
-  const [rg, setRg] = useState('');
-  const [rgError, setRgError] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [senha, setSenha] = useState('');
-  const [senhaError, setSenhaError] = useState('');
+  const [nomeCompleto, setNomeCompleto] = useState("");
+  const [nomeCompletoError, setNomeCompletoError] = useState("");
+  const [rg, setRg] = useState("");
+  const [rgError, setRgError] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [senha, setSenha] = useState("");
+  const [senhaError, setSenhaError] = useState("");
   const [formEnviado, setFormEnviado] = useState(false);
   const [escolas, setEscolas] = React.useState("");
   const [cargo, setCargo] = React.useState("");
+  const [telefone, setTelefone] = useState("");
 
   const handleNomeChange = (event) => {
     const { value } = event.target;
     setNomeCompleto(value);
-    if (value.trim() === '') {
-      setNomeCompletoError('Nome é um campo obrigatório');
+    if (value.trim() === "") {
+      setNomeCompletoError("Nome é um campo obrigatório");
     } else {
-      setNomeCompletoError('');
+      setNomeCompletoError("");
     }
   };
 
@@ -37,30 +38,55 @@ const CadastroUsuarios = () => {
     const { value } = event.target;
     setRg(value);
     if (!/^[0-9]*$/.test(value)) {
-      setRgError('RG deve conter apenas números');
+      setRgError("RG deve conter apenas números");
     } else {
-      setRgError('');
+      setRgError("");
     }
   };
 
   const handleEmailChange = (event) => {
     const { value } = event.target;
     setEmail(value);
-    if (!value.includes('@')) {
-      setEmailError('E-mail inválido');
+    if (!value.includes("@")) {
+      setEmailError("E-mail inválido");
     } else {
-      setEmailError('');
+      setEmailError("");
     }
   };
 
   const handleSenhaChange = (event) => {
     const { value } = event.target;
     setSenha(value);
-    if (value.trim() === '') {
-      setSenhaError('Senha é um campo obrigatório');
+    if (value.trim() === "") {
+      setSenhaError("Senha é um campo obrigatório");
     } else {
-      setSenhaError('');
+      setSenhaError("");
     }
+  };
+
+  const handleTelefoneChange = (event) => {
+    const { value } = event.target;
+    let formattedValue = value.replace(/\D/g, "");
+
+    if (formattedValue.length > 11) {
+      formattedValue = formattedValue.slice(0, 11);
+    }
+
+    let formattedPhoneNumber = "";
+
+    if (formattedValue.length >= 1) {
+      formattedPhoneNumber += `(${formattedValue.substring(0, 2)}`;
+    }
+
+    if (formattedValue.length > 2) {
+      formattedPhoneNumber += `) ${formattedValue.substring(2, 7)}`;
+    }
+
+    if (formattedValue.length > 7) {
+      formattedPhoneNumber += ` ${formattedValue.substring(7, 11)}`;
+    }
+
+    setTelefone(formattedPhoneNumber);
   };
 
   const handleSubmit = (event) => {
@@ -69,11 +95,11 @@ const CadastroUsuarios = () => {
     setFormEnviado(true);
     // Verifica se todos os campos estão preenchidos corretamente
     if (
-      nomeCompleto.trim() === '' ||
-      rg.trim() === '' ||
-      email.trim() === '' ||
-      senha.trim() === '' ||
-      !email.includes('@') ||
+      nomeCompleto.trim() === "" ||
+      rg.trim() === "" ||
+      email.trim() === "" ||
+      senha.trim() === "" ||
+      !email.includes("@") ||
       !/^[0-9]*$/.test(rg)
     ) {
       return;
@@ -84,15 +110,22 @@ const CadastroUsuarios = () => {
 
   const handleCadastroAPISubmit = () => {
     // Adicione aqui a lógica de autenticação, se necessário
-    
+
     const url = "https://nestjs-sgcpe-api.vercel.app/login_senha/register";
     const opcoes = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({'RG': rg, nomeCompleto, email, senha, 'cargoEscolar': cargo, 'nomeEscola': escolas }),
-      
+      body: JSON.stringify({
+        RG: rg,
+        nomeCompleto,
+        email,
+        senha,
+        cargoEscolar: cargo,
+        nomeEscola: escolas,
+        telefone: telefone,
+      }),
     };
 
     fetch(url, opcoes)
@@ -104,11 +137,9 @@ const CadastroUsuarios = () => {
           window.location = "/";
           return resposta.json();
         } else {
-         
           console.error("Erro ao fazer a requisição:", resposta.status);
-          return resposta.json()
+          return resposta.json();
         }
-
       })
       .then((data) => {
         // Processar os dados da resposta, se necessário
@@ -121,46 +152,89 @@ const CadastroUsuarios = () => {
   };
 
   return (
-    <Grid container style={{ height: '100vh' }}>
+    <Grid container style={{ height: "100vh" }}>
       {/* Exibição da imagem à esquerda em telas pequenas */}
-      <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Avatar
+          sx={{ width: "50%", height: "50%" }}
+          src={Logo}
+          variant="square"
+        />
       </Grid>
       {/* Formulário à direita */}
-      <Grid item xs={12} sm={6} style={{ background: Fundo, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <form style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={handleSubmit}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        style={{
+          background: Fundo,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <form
+          style={{
+            height: "100%",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          onSubmit={handleSubmit}
+        >
           <TextField
-            sx={{ marginBottom: '8px', width: '100%' }}
+            sx={{ marginBottom: "8px", width: "100%" }}
             label="Nome completo"
             variant="filled"
             fullWidth
             value={nomeCompleto}
             onChange={handleNomeChange}
-            error={formEnviado && nomeCompleto.trim() === ''}
-            helperText={(formEnviado && nomeCompleto.trim() === '') && 'Nome é um campo obrigatório'}
+            error={formEnviado && nomeCompleto.trim() === ""}
+            helperText={
+              formEnviado &&
+              nomeCompleto.trim() === "" &&
+              "Nome é um campo obrigatório"
+            }
           />
           <TextField
-            style={{ marginBottom: '8px', width: '100%' }}
+            style={{ marginBottom: "8px", width: "100%" }}
             label="RG"
             variant="filled"
             fullWidth
             value={rg}
             onChange={handleRgChange}
-            error={formEnviado && rg.trim() === ''}
-            helperText={(formEnviado && rg.trim() === '') && 'RG é um campo obrigatório'}
+            error={formEnviado && rg.trim() === ""}
+            helperText={
+              formEnviado && rg.trim() === "" && "RG é um campo obrigatório"
+            }
           />
           <TextField
-            sx={{ marginBottom: '8px', width: '100%' }}
+            sx={{ marginBottom: "8px", width: "100%" }}
             label="E-mail"
             variant="filled"
             fullWidth
             value={email}
             onChange={handleEmailChange}
-            error={formEnviado && (!email || !email.includes('@'))}
-            helperText={(formEnviado && (!email || !email.includes('@'))) && 'E-mail inválido'}
+            error={formEnviado && (!email || !email.includes("@"))}
+            helperText={
+              formEnviado &&
+              (!email || !email.includes("@")) &&
+              "E-mail inválido"
+            }
           />
           <TextField
-            sx={{ marginBottom: '8px', width: '100%' }}
+            sx={{ marginBottom: "8px", width: "100%" }}
             fullWidth
             name="password"
             label="Senha"
@@ -171,14 +245,39 @@ const CadastroUsuarios = () => {
             value={senha}
             onChange={handleSenhaChange}
             error={formEnviado && !senha}
-            helperText={(formEnviado && !senha) && 'Senha é um campo obrigatório'}
+            helperText={formEnviado && !senha && "Senha é um campo obrigatório"}
           />
-          <CardCargoUsuarios Cargo={cargo} setCargo={setCargo}/>
-          <CardEscolas Escolas={escolas} setEscolas={setEscolas}/>
+          <TextField
+            sx={{ marginBottom: "8px", width: "100%" }}
+            label="Telefone"
+            variant="filled"
+            fullWidth
+            value={telefone}
+            onChange={handleTelefoneChange}
+            error={formEnviado && telefone.trim() === ""}
+            helperText={
+              formEnviado &&
+              telefone.trim() === "" &&
+              "Telefone é um campo obrigatório"
+            }
+          />
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <CardCargoUsuarios Cargo={cargo} setCargo={setCargo} />
+          <CardEscolas Escolas={escolas} setEscolas={setEscolas} />
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             <Button
-              style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
+              style={{
+                marginTop: "16px",
+                width: "45%",
+                background: "darkblue",
+              }}
               variant="contained"
               href="/"
             >
@@ -186,7 +285,11 @@ const CadastroUsuarios = () => {
             </Button>
 
             <Button
-              style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
+              style={{
+                marginTop: "16px",
+                width: "45%",
+                background: "darkblue",
+              }}
               variant="contained"
               type="submit"
             >

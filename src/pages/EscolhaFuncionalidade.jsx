@@ -5,7 +5,11 @@ import Fundo from '../assets/Fundo.png';
 import CardFuncionalidade from "../components/CardFuncionalidade";
 import MenuApp from '../components/MenuApp';
 
+
 export default function EscolhaFuncionalidade() {
+    if(!sessionStorage.getItem('userData')){
+        return window.location = "/";
+      }
     return (
         <>
             <MenuApp />

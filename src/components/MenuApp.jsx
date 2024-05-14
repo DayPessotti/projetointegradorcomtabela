@@ -15,6 +15,7 @@ import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import Logo from '../assets/SGAE.png';
 import Swal from 'sweetalert2';
+import { useUserContext } from '../context/UserContext';
 
 const pages = [
   { campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' },
@@ -29,6 +30,7 @@ function MenuApp() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate(); 
+  const { logout } = useUserContext();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -54,7 +56,9 @@ function MenuApp() {
     }).then((result) => {
       if (result.isConfirmed) {
         // Redirecionar para a página de login
+        logout();
         navigate('/');
+
       }
     });
   };

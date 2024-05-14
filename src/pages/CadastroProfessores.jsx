@@ -15,8 +15,8 @@ const CadastroProfessores = () => {
   const [codigoDisciplinaError, setcodigoDisciplinaError] = useState('');
   const [rg, setRg] = useState('');
   const [nomeCompleto, setNomeCompleto] = useState('');
-  const [di, setDi] = React.useState('');
-  const [categoria, setCategoria] = React.useState('');
+  const [di, setDi] = useState('');
+  const [categoria, setCategoria] = useState('');
 
   const handlecodigoDisciplinaChange = (event) => {
     const { value } = event.target;
@@ -61,6 +61,11 @@ const CadastroProfessores = () => {
         console.error("Erro durante a requisição:", error);
       });
   };
+
+  if(!sessionStorage.getItem('userData')){
+    return window.location = "/";
+  }
+
 
   return (
     <>

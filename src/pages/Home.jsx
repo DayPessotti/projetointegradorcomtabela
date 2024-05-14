@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../assets/SGAE.png';
-import { Link as RouterLink } from 'react-router-dom';
+import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
 
 const defaultTheme = createTheme();
 
@@ -21,6 +22,9 @@ export default function Home() {
   const [rgError, setRgError] = React.useState('');
   const [senha, setSenha] = React.useState('');
   const [senhaError, setSenhaError] = React.useState('');
+
+  const { login } = useUserContext();
+  const navigate = useNavigate();
 
   const handleRgChange = (event) => {
     const { value } = event.target;
@@ -57,7 +61,7 @@ export default function Home() {
     }
   };
 
-  const handleAPISubmit = () => {
+  const handleAPISubmit =  async () => {
     // Adicione aqui a lógica de autenticação, se necessário
     const url = "https://nestjs-sgcpe-api.vercel.app/login_senha/login";
     const opcoes = {
@@ -71,27 +75,24 @@ export default function Home() {
 
     fetch(url, opcoes)
       .then((resposta) => {
-        // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-
-          // Você pode processar a resposta da API aqui, se necessário
-
-          window.location = "/escolha-funcionalidade";
-
           return resposta.json();
         } else {
          
           return resposta.json()
         }
-
       })
       .then((data) => {
-        // Processar os dados da resposta, se necessário
+        if(data.dados){
+          login(data.dados);
+          navigate("/escolha-funcionalidade")
+        }
         alert(data.message);
+        // navigate("/escolha-funcionalidade")
       })
       .catch((error) => {
         console.error("Erro durante a requisição:", error);
-      });
+      })
   };
 
   return (
