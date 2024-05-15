@@ -1,4 +1,3 @@
-// RedefinirSenha.jsx
 import React from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -7,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import LockResetOutlinedIcon from '@mui/icons-material/LockResetOutlined';
 import Typography from "@mui/material/Typography";
-import { Card, CardContent } from "@mui/material";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -28,7 +26,7 @@ const RedefinirSenha = () => {
     const confirmpassword = data.get("confirmpassword");
     if (newpassword !== confirmpassword)
       toast.error(
-        `Nova senha e Confirme a senha não correspondem!`,
+        `As senhas não correspondem!`,
         {
           autoClose: 5000,
           position: "top-right",
@@ -79,69 +77,85 @@ const RedefinirSenha = () => {
           style={{ maxWidth: "80%", height: "auto" }}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: '#f0f0f0', // Adicionado fundo cinza
+          padding: "20px",
+        }}
+      >
         <Box
           sx={{
-            paddingTop: 5, // Reduzindo o espaço entre o logotipo e o card
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
+            height: '100%',
           }}
         >
-          <Card sx={{ boxShadow: 4, width: "90%", height: "70vh" }}>
-            <CardContent sx={{ m: 3 }}>
-              <Avatar sx={{ m: "auto", bgcolor: "primary.main" }}>
-                <LockResetOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5" sx={{ mt: 2, textAlign: "center" }}>
-                Redefinição de Senha
-              </Typography>
-              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  type="password"
-                  name="newpassword"
-                  id="newpassword"
-                  label="Nova senha"
-                  autoFocus
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  type="password"
-                  name="confirmpassword"
-                  id="confirmpassword"
-                  label="Confirme a senha"
-                />
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    mt: 3,
-                    mb: 2,
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{ width: "45%" }}
-                    href="/esqueceu-senha"
-                  >
-                    Voltar
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ width: "45%" }}
-                  >
-                    Enviar
-                  </Button>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
+          <Avatar sx={{ bgcolor: "secondary.main", marginBottom: 2 }}>
+            <LockResetOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5" sx={{ textAlign: "center" }}>
+            Redefinição de Senha
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: "100%"}}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              type="password"
+              name="newpassword"
+              id="newpassword"
+              label="Nova senha"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              type="password"
+              name="confirmpassword"
+              id="confirmpassword"
+              label="Confirme a senha"
+            />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: 3,
+              }}
+            >
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ width: "100%" }}
+              >
+                Enviar
+              </Button>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: 1,
+              }}
+            >
+              <Button
+                variant="contained"
+                sx={{ width: "100%" }}
+                href="/esqueceu-senha"
+              >
+                Voltar
+              </Button>
+            </Box>
+          </Box>
         </Box>
       </Grid>
     </Grid>
