@@ -25,7 +25,6 @@ const CadastroProfessores = () => {
   };
 
   const handleCadastroProfessorSubmit = () => {
-    // Adicione aqui a lógica de autenticação, se necessário
     
     const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores";
     const opcoes = {
@@ -39,22 +38,16 @@ const CadastroProfessores = () => {
 
     fetch(url, opcoes)
       .then((resposta) => {
-        // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-          console.log("Requisição bem-sucedida!");
-          // Você pode processar a resposta da API aqui, se necessário
           window.location = "/professores";
           return resposta.json();
         } else {
-         
-          console.error("Erro ao fazer a requisição:", resposta.status);
+
           return resposta.json()
         }
 
       })
       .then((data) => {
-        // Processar os dados da resposta, se necessário
-        console.log("Resposta da API:", data);
         alert(data.message);
       })
       .catch((error) => {
@@ -70,7 +63,7 @@ const CadastroProfessores = () => {
   return (
     <>
     <MenuApp/>
-    <Grid container style={{ height: '100vh' }}>
+    <Grid container style={{ height: "90.5vh" }}>
       <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
       </Grid>

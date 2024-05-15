@@ -55,10 +55,9 @@ function MenuApp() {
       confirmButtonText: "Sim, sair",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Redirecionar para a página de login
+
         logout();
         navigate('/');
-
       }
     });
   };
@@ -68,7 +67,7 @@ function MenuApp() {
     if (option === 'Perfil') {
       navigate('/perfil-usuario');
     } else if (option === 'Sair') {
-      // Chamar a função de logout
+
       handleLogout();
     }
   };
@@ -77,12 +76,10 @@ function MenuApp() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Botão de "Home" */}
           <IconButton href='/escolha-funcionalidade'>
             <HomeIcon sx={{ mr: 1 }} />
           </IconButton>
 
-          {/* Título do Aplicativo */}
           <Typography
             variant="h6"
             noWrap
@@ -101,7 +98,6 @@ function MenuApp() {
             SGAE
           </Typography>
 
-          {/* Ícone de Menu (para telas pequenas) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -113,7 +109,7 @@ function MenuApp() {
             >
               <MenuIcon />
             </IconButton>
-            {/* Menu de Navegação para telas pequenas */}
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -142,7 +138,6 @@ function MenuApp() {
             </Menu>
           </Box>
 
-          {/* Título do Aplicativo (para telas pequenas) */}
           <Typography
             variant="h5"
             noWrap
@@ -162,7 +157,6 @@ function MenuApp() {
             SGAE
           </Typography>
 
-          {/* Botões de Navegação (para telas grandes) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -177,14 +171,13 @@ function MenuApp() {
             ))}
           </Box>
 
-          {/* Avatar do Usuário e Menu de Configurações */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Menu">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Logo da empresa" src={Logo} />
               </IconButton>
             </Tooltip>
-            {/* Menu de Configurações do Usuário */}
+
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

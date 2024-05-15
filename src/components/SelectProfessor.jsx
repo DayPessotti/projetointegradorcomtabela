@@ -14,8 +14,6 @@ export default function SelectProfessor({label, professor, setProfessor}) {
     setProfessor(event.target.value);
   };
 
-  // Array de objetos com valores e rótulos
-
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,7 +39,6 @@ export default function SelectProfessor({label, professor, setProfessor}) {
           label={label}
           onChange={handleChange}
         >
-          {/* Mapeamento do array de opções */}
           {dados.map(option => (
             <MenuItem key={option.ID_cp} value={option.ID_cp}>
               {option.nomeCompleto}

@@ -75,7 +75,6 @@ export function ReactDataTables({ ...props }) {
         let data = dt.row(this.parentNode.parentElement).data();
     
         if(data != null ){
-          //alert('You clicked on edit ' + data?.nomeProfessor + "'s row");
           handleEditar(data);
         }
           

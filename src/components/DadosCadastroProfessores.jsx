@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores/"; // Substitua isso com a URL da sua API
+const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores/";
 
 const DadosCadastroProfessores = () => {
   const [dados, setDados] = useState([]);
@@ -53,31 +53,24 @@ const DadosCadastroProfessores = () => {
         });
       }
     });
-    // Implemente a lógica para exclusão
   };
 
   const handleSubmit = (id) => {
-    // Adicione aqui a lógica de autenticação, se necessário
     const opcoes = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      // body: JSON.stringify({ ID_cp }),
     };
 
     fetch(url + id, opcoes)
       .then((resposta) => {
-        // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-          console.log("Requisição bem-sucedida!");
-          // Você pode processar a resposta da API aqui, se necessário
-
           window.location = "/professores";
 
           return resposta.json();
         } else {
-          console.error("Erro ao fazer a requisição:", resposta.status);
+
           return resposta.json();
         }
       })

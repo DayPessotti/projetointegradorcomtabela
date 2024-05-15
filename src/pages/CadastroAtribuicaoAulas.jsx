@@ -22,7 +22,6 @@ export default function CadastroAtribuicaoAulas() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Verifica se todos os campos estão preenchidos
 
     handleAPISubmit();
   };
@@ -74,7 +73,7 @@ export default function CadastroAtribuicaoAulas() {
   return (
     <>
       <MenuApp />
-      <Grid container style={{ height: "100vh" }}>
+      <Grid container style={{ height: "90.5vh" }}>
         <Grid
           item
           xs={12}

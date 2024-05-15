@@ -91,9 +91,9 @@ const CadastroUsuarios = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Define o formulário como enviado para mostrar mensagens de erro
+
     setFormEnviado(true);
-    // Verifica se todos os campos estão preenchidos corretamente
+
     if (
       nomeCompleto.trim() === "" ||
       rg.trim() === "" ||
@@ -104,12 +104,11 @@ const CadastroUsuarios = () => {
     ) {
       return;
     }
-    // Lógica de autenticação ou envio do formulário
+
     handleCadastroAPISubmit();
   };
 
   const handleCadastroAPISubmit = () => {
-    // Adicione aqui a lógica de autenticação, se necessário
 
     const url = "https://nestjs-sgcpe-api.vercel.app/login_senha/register";
     const opcoes = {
@@ -130,20 +129,16 @@ const CadastroUsuarios = () => {
 
     fetch(url, opcoes)
       .then((resposta) => {
-        // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-          console.log("Requisição bem-sucedida!");
-          // Você pode processar a resposta da API aqui, se necessário
+
           window.location = "/";
           return resposta.json();
         } else {
-          console.error("Erro ao fazer a requisição:", resposta.status);
+
           return resposta.json();
         }
       })
       .then((data) => {
-        // Processar os dados da resposta, se necessário
-        console.log("Resposta da API:", data);
         alert(data.message);
       })
       .catch((error) => {
@@ -153,7 +148,6 @@ const CadastroUsuarios = () => {
 
   return (
     <Grid container style={{ height: "100vh" }}>
-      {/* Exibição da imagem à esquerda em telas pequenas */}
       <Grid
         item
         xs={12}
@@ -170,7 +164,6 @@ const CadastroUsuarios = () => {
           variant="square"
         />
       </Grid>
-      {/* Formulário à direita */}
       <Grid
         item
         xs={12}

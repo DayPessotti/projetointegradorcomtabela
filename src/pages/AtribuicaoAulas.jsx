@@ -107,8 +107,8 @@ const EmployeeTable = () => {
           width: "90%",
           margin: "30px auto",
           backgroundColor: "#FFFFFF",
-          padding: "10px", // Adicionando padding para espaçamento interno
-          boxSizing: "border-box", // Garantindo que o padding não aumente a largura
+          padding: "10px",
+          boxSizing: "border-box",
         }}
       >
         <ReactDataTables

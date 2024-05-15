@@ -11,15 +11,12 @@ import Logo from "../assets/SGAE.png";
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
 import { useUserContext } from "../context/UserContext";
-
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CardDisciplinas from "../components/CardDisciplina";
 import MenuApp from '../components/MenuApp';
 
 export default function Perfil() {
   const { userInfo } = useUserContext();
-
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [rg, setRg] = useState("");
   const [email, setEmail] = useState("");
@@ -43,7 +40,7 @@ export default function Perfil() {
 
     const savedPhoto = localStorage.getItem("profilePhoto");
     if (savedPhoto) {
-      setNovaFoto(savedPhoto); // Load from localStorage
+      setNovaFoto(savedPhoto);
     }
   }, [userInfo]);
 
@@ -56,31 +53,16 @@ export default function Perfil() {
   const handleNomeChange = (event) => {
     const { value } = event.target;
     setNomeCompleto(value);
-    // if (value.trim() === '') {
-    //   setNomeCompletoError('Nome é um campo obrigatório');
-    // } else {
-    //   setNomeCompletoError('');
-    // }
   };
 
   const handleRgChange = (event) => {
     const { value } = event.target;
     setRg(value);
-    // if (!/^[0-9]*$/.test(value)) {
-    //   setRgError('RG deve conter apenas números');
-    // } else {
-    //   setRgError('');
-    // }
   };
 
   const handleEmailChange = (event) => {
     const { value } = event.target;
     setEmail(value);
-    // if (!value.includes('@')) {
-    //   setEmailError('E-mail inválido');
-    // } else {
-    //   setEmailError('');
-    // }
   };
 
   const handleTelefoneChange = (event) => {
@@ -108,21 +90,6 @@ export default function Perfil() {
     setTelefone(formattedPhoneNumber);
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   setFormEnviado(true);
-  //   if (
-  //     nomeCompleto.trim() === '' ||
-  //     rg.trim() === '' ||
-  //     email.trim() === '' ||
-  //     telefone.trim() === '' ||
-  //     !email.includes('@') ||
-  //     !/^[0-9]*$/.test(rg)
-  //   ) {
-  //     return;
-  //   }
-  // };
-
   const handleNovaFotoSelecionada = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -146,7 +113,7 @@ export default function Perfil() {
   return (
     <>
       <MenuApp />
-      <Grid container style={{ height: "100vh" }}>
+      <Grid container style={{ height: "90.5vh" }}>
         <Grid
           item
           xs={12}
@@ -184,7 +151,7 @@ export default function Perfil() {
               justifyContent: "center",
             }}
           >
-           <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
+           <Stack direction="row" spacing={2} alignItems="center" justifyContent="center"  margin= "10px">
               <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                 <Avatar
                   alt="Professor 1"
@@ -291,7 +258,6 @@ export default function Perfil() {
               >
                 Voltar
               </Button>
-              {/* <Button style={{ marginTop: '16px', width: '45%', background: 'darkblue' }} variant="contained" type="submit">Salvar</Button> */}
             </div>
           </form>
         </Grid>

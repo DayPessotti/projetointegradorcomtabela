@@ -48,21 +48,20 @@ export default function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Verifica se todos os campos estão preenchidos
+
     if (rg.trim() === '') {
       setRgError('RG é um campo obrigatório');
     }
     if (senha.trim() === '') {
       setSenhaError('Senha é um campo obrigatório');
     }
-    // Se todos os campos obrigatórios estiverem preenchidos, executa a lógica de autenticação ou envio do formulário
+
     if (rg.trim() !== '' && senha.trim() !== '') {
       handleAPISubmit();
     }
   };
 
   const handleAPISubmit =  async () => {
-    // Adicione aqui a lógica de autenticação, se necessário
     const url = "https://nestjs-sgcpe-api.vercel.app/login_senha/login";
     const opcoes = {
       method: "POST",
@@ -88,7 +87,6 @@ export default function Home() {
           navigate("/escolha-funcionalidade")
         }
         alert(data.message);
-        // navigate("/escolha-funcionalidade")
       })
       .catch((error) => {
         console.error("Erro durante a requisição:", error);
@@ -122,7 +120,7 @@ export default function Home() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#f0f0f0', // Altere a cor de fundo conforme necessário
+            backgroundColor: '#f0f0f0',
             padding: '20px',
           }}
         >

@@ -43,9 +43,8 @@ export default function EditarProfessor({ dados, setDados, open, setOpen }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Define o formulário como enviado para mostrar mensagens de erro
     setFormEnviado(true);
-    // Verifica se todos os campos estão preenchidos corretamente
+
     console.table(dados);
     if (
       dados.nomeCompleto.trim() === ""
@@ -57,12 +56,10 @@ export default function EditarProfessor({ dados, setDados, open, setOpen }) {
     ) {
       return;
     }
-    // Lógica de autenticação ou envio do formulário
     handleUpDateSubmit();
   };
 
    const handleUpDateSubmit = () => {
-    // Adicione aqui a lógica de autenticação, se necessário
     const opcoes = {
       method: "PUT",
       headers: {
@@ -74,23 +71,17 @@ export default function EditarProfessor({ dados, setDados, open, setOpen }) {
 
     fetch(url + dados.ID_cp, opcoes)
       .then((resposta) => {
-        // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-          console.log("Requisição bem-sucedida!");
-          // Você pode processar a resposta da API aqui, se necessário
 
           return resposta.json();
         } else {
 
-          console.error("Erro ao fazer a requisição:", resposta.status);
           return resposta.json()
         }
 
       })
       .then((data) => {
-        // Processar os dados da resposta, se necessário
 
-        console.log("Resposta da API:", data);
         alert(data.message);
         setOpen(false);
         window.location = "/professores";
@@ -126,7 +117,6 @@ export default function EditarProfessor({ dados, setDados, open, setOpen }) {
         </AppBar>
 
         <Grid container style={{ height: "100vh" }}>
-          {/* Exibição da imagem à esquerda em telas pequenas */}
           <Grid
             item
             xs={12}
@@ -143,7 +133,6 @@ export default function EditarProfessor({ dados, setDados, open, setOpen }) {
               variant="square"
             />
           </Grid>
-          {/* Formulário à direita */}
           <Grid
             item
             xs={12}

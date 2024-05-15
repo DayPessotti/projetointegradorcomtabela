@@ -9,13 +9,9 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import Background from "../assets/Fundo.png";
-import Select from "@mui/material/Select";
 import { Avatar } from "@mui/material";
 import Logo from "../assets/SGAE.png";
-import FormControl from "@mui/material/FormControl";
 import dayjs from "dayjs";
 import SelectProfessor from "./SelectProfessor";
 import InputData from "./InputData";
@@ -29,7 +25,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function EditarAtribuicaoAulas({
   dados,
-  setDados,
   open,
   setOpen,
 }) {
@@ -78,7 +73,6 @@ export default function EditarAtribuicaoAulas({
   };
 
   const handleUpDateSubmit = () => {
-    // Adicione aqui a lógica de autenticação, se necessário
     const opcoes = {
       method: "PUT",
       headers: {
@@ -103,12 +97,11 @@ export default function EditarAtribuicaoAulas({
           window.location = "/atribuicao-aulas";
           return resposta.json();
         } else {
-          console.error("Erro ao fazer a requisição:", resposta.status);
+
           return resposta.json();
         }
       })
       .then((data) => {
-        console.log("Resposta da API:", data);
         alert(data.message);
         setOpen(false);
         window.location = "/atribuicao-aulas";
@@ -143,7 +136,6 @@ export default function EditarAtribuicaoAulas({
         </AppBar>
 
         <Grid container style={{ height: "100vh" }}>
-          {/* Exibição da imagem à esquerda em telas pequenas */}
           <Grid
             item
             xs={12}
@@ -160,7 +152,6 @@ export default function EditarAtribuicaoAulas({
               variant="square"
             />
           </Grid>
-          {/* Formulário à direita */}
           <Grid
             item
             xs={12}
@@ -221,7 +212,6 @@ export default function EditarAtribuicaoAulas({
                   onChange={(event) => {
                     setQuantidadeAulas(event.target.value);
                   }}
-                  // fullWidth
                 />
 
                 <TextField
@@ -232,7 +222,6 @@ export default function EditarAtribuicaoAulas({
                   onChange={(event) => {
                     setCie(event.target.value);
                   }}
-                  // fullWidth
                 />
 
                 <TextField
@@ -243,7 +232,6 @@ export default function EditarAtribuicaoAulas({
                   onChange={(event) => {
                     setNt(event.target.value);
                   }}
-                  // fullWidth
                 />
               </div>
 

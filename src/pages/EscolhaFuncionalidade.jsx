@@ -16,25 +16,25 @@ export default function EscolhaFuncionalidade() {
             <div
                 style={{
                     width: '100vw',
-                    height: '100vh',
+                    height: '90.5vh',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundImage: `url(${Fundo})`, // Adiciona a imagem de fundo
-                    backgroundSize: 'cover', // Garante que a imagem de fundo cubra toda a área
-                    backgroundPosition: 'center', // Centraliza a imagem de fundo
+                    backgroundImage: `url(${Fundo})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                 }}
             >
                 <div style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    justifyContent: 'center', // Centraliza os elementos na linha
+                    justifyContent: 'center',
                     alignItems: 'center',
-                    width: '60%', // Ajusta a largura do container principal
+                    width: '60%', 
                     height: '60%',
                 }}>
                     <CardFuncionalidade img={Figura1} header='Atribuição de Aulas' url={'/atribuicao-aulas'} />
-                    <div style={{ width: '40px' }}></div> {/* Espaço entre os cards */}
+                    <div style={{ width: '40px' }}></div>
                     <CardFuncionalidade img={Figura2} header='Cadastro de Professores' url={'/cadastro-professores'} />
                 </div>
             </div>

@@ -12,19 +12,6 @@ import Logo from '../assets/SGAE.png';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import { Link as RouterLink } from 'react-router-dom';
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://www.sgae.com.br/">
-                SGAE
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 const defaultTheme = createTheme();
 
 export default function RestaurarSenha() {
@@ -45,11 +32,9 @@ export default function RestaurarSenha() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Verifica se o campo de e-mail está vazio
         if (email.trim() === '') {
             setEmailError("E-mail é um campo obrigatório");
         } else {
-            // Lógica de autenticação ou envio do formulário
             window.location.href = '/';
         }
     };
@@ -81,7 +66,7 @@ export default function RestaurarSenha() {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: '#f0f0f0', // Altere a cor de fundo conforme necessário
+                        backgroundColor: '#f0f0f0',
                         padding: '20px',
                     }}
                 >
@@ -127,9 +112,6 @@ export default function RestaurarSenha() {
                         >
                             Voltar para o Login
                         </Button>
-                        <Box mt={5}>
-                            <Copyright />
-                        </Box>
                     </Box>
                 </Grid>
             </Grid>
