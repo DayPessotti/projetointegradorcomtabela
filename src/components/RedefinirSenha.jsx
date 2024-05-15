@@ -64,7 +64,7 @@ const RedefinirSenha = () => {
         xs={12}
         sm={6}
         sx={{
-          display: "flex",
+          display: { xs: 'none', sm: 'flex' }, // Ocultar em telas XS (mobile)
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
