@@ -1,12 +1,11 @@
-//ResetPassword.js
-
-import { React } from "react";
+// RedefinirSenha.jsx
+import React from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import LockResetIcon from "@mui/icons-material/LockReset";
+import LockResetOutlinedIcon from '@mui/icons-material/LockResetOutlined';
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
 import { toast } from "react-toastify";
@@ -29,8 +28,7 @@ const RedefinirSenha = () => {
     const confirmpassword = data.get("confirmpassword");
     if (newpassword !== confirmpassword)
       toast.error(
-        `Nova senha e
-                         Confirme a senha não corresponde!`,
+        `Nova senha e Confirme a senha não correspondem!`,
         {
           autoClose: 5000,
           position: "top-right",
@@ -81,22 +79,22 @@ const RedefinirSenha = () => {
           style={{ maxWidth: "80%", height: "auto" }}
         />
       </Grid>
-      <Grid maxWidth="sm">
+      <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
         <Box
           sx={{
+            paddingTop: 5, // Reduzindo o espaço entre o logotipo e o card
             display: "flex",
             flexDirection: "column",
-            paddingTop: 15,
             alignItems: "center",
           }}
         >
-          <Card sx={{ boxShadow: 4, width: "40vw", height: "70vh" }}>
+          <Card sx={{ boxShadow: 4, width: "90%", height: "70vh" }}>
             <CardContent sx={{ m: 3 }}>
               <Avatar sx={{ m: "auto", bgcolor: "primary.main" }}>
-                <LockResetIcon />
+                <LockResetOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5" sx={{ mt: 10 }}>
-                Redefinir senha
+              <Typography component="h1" variant="h5" sx={{ mt: 2, textAlign: "center" }}>
+                Redefinição de Senha
               </Typography>
               <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <TextField

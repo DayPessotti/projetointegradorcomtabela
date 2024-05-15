@@ -1,10 +1,11 @@
-import { React } from "react";
+// EsquecerSenha.jsx
+import React from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockResetOutlinedIcon from '@mui/icons-material/LockResetOutlined';
 import Typography from "@mui/material/Typography";
 import { Card, CardContent } from "@mui/material";
 import { toast } from "react-toastify";
@@ -53,16 +54,16 @@ const EsquecerSenha = () => {
           style={{ maxWidth: "80%", height: "auto" }}
         />
       </Grid>
-      <Grid maxWidth="sm">
+      <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
         <Box
           sx={{
-            paddingTop: 15,
+            paddingTop: 5, // Reduzindo o espaço entre o logotipo e o card
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Card sx={{ boxShadow: "4", width: "40vw", height: "70vh" }}>
+          <Card sx={{ boxShadow: "4", width: "90%", height: "70vh" }}>
             <CardContent sx={{ m: 3 }}>
               <Avatar
                 sx={{
@@ -70,10 +71,10 @@ const EsquecerSenha = () => {
                   bgcolor: "primary.main",
                 }}
               >
-                <LockOutlinedIcon />
+                <LockResetOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5" sx={{ mt: 10 }}>
-                Esqueceu sua senha
+              <Typography component="h1" variant="h5" sx={{ mt: 2, textAlign: "center" }}>
+                Recuperação de Senha
               </Typography>
 
               <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -99,7 +100,7 @@ const EsquecerSenha = () => {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ width: "100%", marginTop: "50px" }}
+                  sx={{ width: "100%", marginTop: "20px" }}
                   href="/"
                 >
                   Voltar
