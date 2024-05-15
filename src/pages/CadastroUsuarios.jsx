@@ -152,8 +152,8 @@ const CadastroUsuarios = () => {
         item
         xs={12}
         sm={6}
-        style={{
-          display: "flex",
+        sx={{
+          display: { xs: 'none', sm: 'flex' }, // Ocultar em telas XS (mobile)
           alignItems: "center",
           justifyContent: "center",
         }}
