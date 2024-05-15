@@ -65,7 +65,7 @@ const CadastroProfessores = () => {
     <MenuApp/>
     <Grid container style={{ height: "90.5vh" }}>
       <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
+        <Avatar sx={{ width: '50%', height: '50%', display: { xs: 'none', sm: 'block' } }} src={Logo} variant="square" />
       </Grid>
       <Grid item xs={12} sm={6} style={{ background: Fundo, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <form onSubmit={(e) => {
