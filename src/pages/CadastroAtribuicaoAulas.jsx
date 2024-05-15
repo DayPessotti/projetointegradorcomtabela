@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Avatar, Grid } from "@mui/material";
+import { Avatar, Grid, useMediaQuery, useTheme } from "@mui/material";
 import Button from "@mui/material/Button";
-import Logo from "../assets/SGAE.png";
 import Background from "../assets/Fundo.png";
 import MenuApp from "../components/MenuApp";
 import dayjs from "dayjs";
 import InputData from "../components/InputData";
 import SelectProfessor from "../components/SelectProfessor";
+import Logo from "../assets/SGAE.png";
 
 const Fundo = `url(${Background})`;
 
@@ -19,6 +19,9 @@ export default function CadastroAtribuicaoAulas() {
   const [cie, setCie] = useState("");
   const [quantidadeAulas, setQuantidadeAulas] = useState(0);
   const [nt, setNt] = useState(0);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,25 +43,20 @@ export default function CadastroAtribuicaoAulas() {
         nt: parseInt(nt),
         Data: data,
         UA: ua,
-        CIE: cie
+        CIE: cie,
       }),
     };
 
     fetch(url, opcoes)
       .then((resposta) => {
-        // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-          // Você pode processar a resposta da API aqui, se necessário
-
           window.location = "/atribuicao-aulas";
-
           return resposta.json();
         } else {
           return resposta.json();
         }
       })
       .then((data) => {
-        // Processar os dados da resposta, se necessário
         alert(data.message);
       })
       .catch((error) => {
@@ -66,8 +64,8 @@ export default function CadastroAtribuicaoAulas() {
       });
   };
 
-  if(!sessionStorage.getItem('userData')){
-    return window.location = "/";
+  if (!sessionStorage.getItem("userData")) {
+    return (window.location = "/");
   }
 
   return (
@@ -84,11 +82,13 @@ export default function CadastroAtribuicaoAulas() {
             justifyContent: "center",
           }}
         >
-          <Avatar
-            sx={{ width: "50%", height: "50%" }}
-            src={Logo}
-            variant="square"
-          />
+          {!isMobile && (
+            <Avatar
+              sx={{ width: "50%", height: "50%" }}
+              src={Logo}
+              variant="square"
+            />
+          )}
         </Grid>
         <Grid
           item
@@ -191,7 +191,7 @@ export default function CadastroAtribuicaoAulas() {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                width: "100%"
+                width: "100%",
               }}
             >
               <Button
