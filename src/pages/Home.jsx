@@ -11,9 +11,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Logo from '../assets/SGAE.png';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/UserContext';
+
+import Logo from '../assets/SGAE.png'; // Adicionando a importação do logotipo
 
 const defaultTheme = createTheme();
 
@@ -102,7 +103,7 @@ export default function Home() {
           xs={12}
           sm={6}
           sx={{
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' }, // Ocultar em telas XS (mobile)
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
