@@ -5,11 +5,12 @@ import Home from "./pages/Home";
 import CadastroUsuarios from "./pages/CadastroUsuarios";
 import CadastroProfessores from "./pages/CadastroProfessores";
 import AtribuicaoAulas from "./pages/AtribuicaoAulas";
-import RestaurarSenha from "./pages/RestaurarSenha";
 import Professores from "./pages/Professores";
 import CadastroAtribuicaoAulas from "./pages/CadastroAtribuicaoAulas";
 import Perfil from "./pages/Perfil";
 import { UserProvider } from "./context/UserContext";
+import EsqueceuSenha from "./pages/EsqueceuSenha";
+import RedefinirSenha from "./components/RedefinirSenha";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
               element={<CadastroProfessores />}
             />
             <Route path="/atribuicao-aulas" element={<AtribuicaoAulas />} />
-            <Route path="/restaurar-senha" element={<RestaurarSenha />} />
+            <Route path="/esqueceu-senha" element={<EsqueceuSenha/>} />
+            <Route path="/redefinir-senha" element={<RedefinirSenha/>} />
             <Route path="/professores" element={<Professores />} />
             <Route
               path="/cadastro-aulas"

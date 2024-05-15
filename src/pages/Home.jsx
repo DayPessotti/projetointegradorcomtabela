@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../assets/SGAE.png';
-import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/UserContext';
 
 const defaultTheme = createTheme();
@@ -177,7 +177,7 @@ export default function Home() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link component={RouterLink} to="/restaurar-senha" variant="body2">
+                <Link component={RouterLink} to="/esqueceu-senha" variant="body2">
                   Esqueceu a senha?
                 </Link>
               </Grid>
