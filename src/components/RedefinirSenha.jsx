@@ -150,7 +150,6 @@ const RedefinirSenha = () => {
               <Button
                 variant="contained"
                 sx={{ width: "100%" }}
-                href="/esqueceu-senha"
               >
                 Voltar
               </Button>

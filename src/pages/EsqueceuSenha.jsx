@@ -11,8 +11,12 @@ import { toast } from "react-toastify";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Logo from "../assets/SGAE.png";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const EsquecerSenha = () => {
+  const navigate = useNavigate(); 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -20,15 +24,11 @@ const EsquecerSenha = () => {
     const url = process.env.REACT_APP_BACKEND_URL + "/api/forgotPassword";
     const res = await axios.post(url, { email: email });
     if (res.data.success === false) {
-      toast.error(res.data.message, {
-        autoClose: 5000,
-        position: "top-right",
-      });
+      Swal.fire(res.data.message);
     } else {
-      toast.success(res.data.message, {
-        autoClose: 5000,
-        position: "top-right",
-      });
+      Swal.fire(res.data.message).then((result) => {
+        navigate('/');
+    });
     }
   };
   return (
@@ -102,7 +102,6 @@ const EsquecerSenha = () => {
               variant="contained"
               fullWidth
               sx={{ mt: 2 }}
-              href="/redefinir-senha"
             >
               Redefinir senha
             </Button>
