@@ -6,12 +6,12 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import LockResetOutlinedIcon from '@mui/icons-material/LockResetOutlined';
 import Typography from "@mui/material/Typography";
-import { toast } from "react-toastify";
 import axios from "axios";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Logo from "../assets/SGAE.png";
+import Swal from "sweetalert2";
 
 const RedefinirSenha = () => {
   const [searchParams] = useSearchParams();
@@ -25,13 +25,7 @@ const RedefinirSenha = () => {
     const newpassword = data.get("newpassword");
     const confirmpassword = data.get("confirmpassword");
     if (newpassword !== confirmpassword)
-      toast.error(
-        `As senhas não correspondem!`,
-        {
-          autoClose: 5000,
-          position: "top-right",
-        }
-      );
+      Swal.fire('As senhas não correspondem!');
     else {
       const url = process.env.REACT_APP_BACKEND_URL + "/api/ResetarSenha";
       const res = await axios.post(url, {
@@ -40,15 +34,9 @@ const RedefinirSenha = () => {
         userId: userId,
       });
       if (res.data.success === false) {
-        toast.error(res.data.message, {
-          autoClose: 5000,
-          position: "top-right",
-        });
+        Swal.fire(res.data.message);
       } else {
-        toast.success(res.data.message, {
-          autoClose: 5000,
-          position: "top-right",
-        });
+        Swal.fire(res.data.message);
         setTimeout(() => {
           navigate("/");
         }, 2000);
