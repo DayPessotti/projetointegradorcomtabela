@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 import { useUserContext } from '../context/UserContext';
 
 const pages = [
-  { campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' },
+  { campo: 'Aulas Atribuídas', url: '/atribuicao-aulas' },
   { campo: 'Cadastro Atribuição de Aulas', url: '/cadastro-aulas' },
   { campo: 'Professores', url: '/professores' },
   { campo: 'Cadastro de Professores', url: '/cadastro-professores' }

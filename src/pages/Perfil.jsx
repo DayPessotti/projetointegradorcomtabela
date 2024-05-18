@@ -113,7 +113,7 @@ export default function Perfil() {
   return (
     <>
       <MenuApp />
-      <Grid container style={{ height: "90.5vh" }}>
+      <Grid container style={{ height: "50vh" }}>
         <Grid
           item
           xs={12}
@@ -125,12 +125,14 @@ export default function Perfil() {
           }}
         >
           <Avatar
+            className="logo"
             sx={{ width: "50%", height: "50%" }}
             src={Logo}
             variant="square"
           />
         </Grid>
         <Grid
+          className="container"
           item
           xs={12}
           sm={6}
@@ -262,6 +264,20 @@ export default function Perfil() {
           </form>
         </Grid>
       </Grid>
+      <style>
+          {`
+        @media only screen and (max-width: 700px) {
+          .container {
+            maxWidth: 700px;
+            height: 100vh;
+          }
+          .logo {
+            maxWidth: 800px;
+            display: none;
+          }
+        }
+        `}
+      </style>
     </>
   );
 }

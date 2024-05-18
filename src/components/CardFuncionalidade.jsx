@@ -6,7 +6,8 @@ import { Avatar, Button, CardActionArea, CardActions } from "@mui/material";
 
 export default function CardFuncionalidade({ img, header, url }) {
     return (
-        <Card
+        <>
+        <Card className="conteiner-card"
             sx={{
                 width: "45%",
                 minWidth: "200px",
@@ -41,5 +42,21 @@ export default function CardFuncionalidade({ img, header, url }) {
                 </Button>
             </CardActions>
         </Card>
+        <style>
+            {`
+        @media only screen and (max-width: 1200px) {
+          .conteiner-card {
+            width: 45%;
+          }
+        }
+
+        @media only screen and (max-width: 800px) {
+          .conteiner-card {
+            width: 20%;
+          }
+        }
+        `}
+        </style>
+    </>
     );
 }

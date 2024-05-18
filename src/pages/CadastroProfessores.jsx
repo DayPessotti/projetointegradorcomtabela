@@ -65,9 +65,9 @@ const CadastroProfessores = () => {
     <MenuApp/>
     <Grid container style={{ height: "90.5vh" }}>
       <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Avatar sx={{ width: '50%', height: '50%', display: { xs: 'none', sm: 'block' } }} src={Logo} variant="square" />
+        <Avatar className='logo' sx={{ width: '50%', height: '50%', display: { xs: 'none', sm: 'block' } }} src={Logo} variant="square" />
       </Grid>
-      <Grid item xs={12} sm={6} style={{ background: Fundo, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Grid item xs={12} sm={6} className='cadastro-professor' style={{ background: Fundo, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <form onSubmit={(e) => {
           e.preventDefault();
           
@@ -117,6 +117,27 @@ const CadastroProfessores = () => {
         </form>
       </Grid>
     </Grid>
+    <style>
+          {`
+        @media only screen and (max-width: 1200px) {
+          .cadastro-professor {
+            maxWidth: 1200px;
+            height: 94.9vh;
+          }
+        }
+
+        @media only screen and (max-width: 700px) {
+          .cadastro-professor  {
+            maxWidth: 700px;
+            height: 100vh;
+          }
+          .logo {
+            maxWidth: 800px;
+            display: none;
+          }
+        }
+        `}
+      </style>
     </>
   );
 };

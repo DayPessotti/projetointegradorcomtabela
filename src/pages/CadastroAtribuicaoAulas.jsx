@@ -84,6 +84,7 @@ export default function CadastroAtribuicaoAulas() {
         >
           {!isMobile && (
             <Avatar
+              className="logo"
               sx={{ width: "50%", height: "50%" }}
               src={Logo}
               variant="square"
@@ -91,6 +92,7 @@ export default function CadastroAtribuicaoAulas() {
           )}
         </Grid>
         <Grid
+          className="cadastro-aulas"
           item
           xs={12}
           sm={6}
@@ -209,6 +211,27 @@ export default function CadastroAtribuicaoAulas() {
           </form>
         </Grid>
       </Grid>
+      <style>
+          {`
+        @media only screen and (max-width: 1200px) {
+          .cadastro-aulas {
+            maxWidth: 1200px;
+            height: 94.9vh;
+          }
+        }
+
+        @media only screen and (max-width: 700px) {
+          .cadastro-aulas {
+            maxWidth: 700px;
+            height: 100vh;
+          }
+          .logo {
+            maxWidth: 800px;
+            display: none;
+          }
+        }
+        `}
+      </style>
     </>
   );
 }

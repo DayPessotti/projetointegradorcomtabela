@@ -112,6 +112,7 @@ export default function EditarAtribuicaoAulas({
   };
 
   return (
+    <>
     <React.Fragment>
       <Dialog
         fullScreen
@@ -147,12 +148,14 @@ export default function EditarAtribuicaoAulas({
             }}
           >
             <Avatar
+              className="logo"
               sx={{ width: "50%", height: "50%" }}
               src={Logo}
               variant="square"
             />
           </Grid>
           <Grid
+            className="editar-atribuicao-aula"
             item
             xs={12}
             sm={6}
@@ -283,5 +286,27 @@ export default function EditarAtribuicaoAulas({
         </Grid>
       </Dialog>
     </React.Fragment>
+    <style>
+          {`
+        @media only screen and (max-width: 1200px) {
+          .editar-atribuicao-aula{
+            maxWidth: 1200px;
+            height: 94.9vh;
+          }
+        }
+
+        @media only screen and (max-width: 700px) {
+          .editar-atribuicao-aula  {
+            maxWidth: 700px;
+            height: 100vh;
+          }
+          .logo {
+            maxWidth: 800px;
+            display: none;
+          }
+        }
+        `}
+      </style>
+    </>
   );
 }
