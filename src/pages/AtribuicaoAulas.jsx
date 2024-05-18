@@ -21,7 +21,7 @@ const columns = [
   { data: "Data", title: "Dia" },
   { data: "quantidadeAulas", title: "QTD Aulas" },
   { data: "nt", title: "NT" },
-  { data: "nomeProfessor", title: "Professor" },
+  { data: "nomeProfessor", title: "Professor Titular" },
   { data: "RGProfessor", title: "RG Professor" },
   { data: "DIProfessor", title: "DI" },
   { data: "codigoDisciplinaProfessorEventual", title: "DISC" },

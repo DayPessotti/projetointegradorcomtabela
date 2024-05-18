@@ -114,7 +114,7 @@ export default function CadastroAtribuicaoAulas() {
             }}
           >
             <SelectProfessor
-              label={"Professor"}
+              label={"Professor Titular"}
               professor={professor}
               setProfessor={setProfessor}
             />

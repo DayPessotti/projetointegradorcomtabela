@@ -19,7 +19,7 @@ import { useUserContext } from '../context/UserContext';
 
 const pages = [
   { campo: 'Aulas Atribuídas', url: '/atribuicao-aulas' },
-  { campo: 'Cadastro Atribuição de Aulas', url: '/cadastro-aulas' },
+  { campo: 'Atribuição de Aulas', url: '/cadastro-aulas' },
   { campo: 'Professores', url: '/professores' },
   { campo: 'Cadastro de Professores', url: '/cadastro-professores' }
 ];

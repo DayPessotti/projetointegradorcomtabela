@@ -33,7 +33,7 @@ export default function EscolhaFuncionalidade() {
                     width: '60%', 
                     height: '60%',
                 }}>
-                    <CardFuncionalidade img={Figura1} header='Cadastro de Atribuição de Aulas' url={'/cadastro-aulas'} />
+                    <CardFuncionalidade img={Figura1} header='Atribuição de Aulas' url={'/cadastro-aulas'} />
                     <div style={{ width: '40px' }}></div>
                     <CardFuncionalidade img={Figura2} header='Cadastro de Professores' url={'/cadastro-professores'} />
                 </div>
