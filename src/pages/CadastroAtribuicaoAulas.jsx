@@ -50,7 +50,7 @@ export default function CadastroAtribuicaoAulas() {
     fetch(url, opcoes)
       .then((resposta) => {
         if (resposta.ok) {
-          window.location = "/atribuicao-aulas";
+          window.location = "/aulas-atribuidas";
           return resposta.json();
         } else {
           return resposta.json();

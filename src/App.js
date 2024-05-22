@@ -28,12 +28,12 @@ function App() {
               path="/cadastro-professores"
               element={<CadastroProfessores />}
             />
-            <Route path="/atribuicao-aulas" element={<AtribuicaoAulas />} />
+            <Route path="/aulas-atribuidas" element={<AtribuicaoAulas />} />
             <Route path="/esqueceu-senha" element={<EsqueceuSenha/>} />
             <Route path="/redefinir-senha" element={<RedefinirSenha/>} />
             <Route path="/professores" element={<Professores />} />
             <Route
-              path="/cadastro-aulas"
+              path="/atribuicao-aulas"
               element={<CadastroAtribuicaoAulas />}
             />
             <Route path="/perfil-usuario" element={<Perfil />} />

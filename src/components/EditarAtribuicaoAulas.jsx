@@ -94,7 +94,7 @@ export default function EditarAtribuicaoAulas({
     fetch(url + dados.idAtribuicaoAulas, opcoes)
       .then((resposta) => {
         if (resposta.ok) {
-          window.location = "/atribuicao-aulas";
+          window.location = "/aulas-atribuidas";
           return resposta.json();
         } else {
 
@@ -104,7 +104,7 @@ export default function EditarAtribuicaoAulas({
       .then((data) => {
         alert(data.message);
         setOpen(false);
-        window.location = "/atribuicao-aulas";
+        window.location = "/aulas-atribuidas";
       })
       .catch((error) => {
         console.error("Erro durante a requisição:", error);

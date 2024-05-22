@@ -51,7 +51,7 @@ export function ReactDataTables({ ...props }) {
       .then((resposta) => {
         if (resposta.ok) {
           console.log("Requisição bem-sucedida!");
-          window.location = "/atribuicao-aulas";
+          window.location = "/aulas-atribuidas";
 
           return resposta.json();
         } else {
